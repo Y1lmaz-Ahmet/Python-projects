@@ -23,7 +23,7 @@ scissors = """
 ---.__(___)
 """
 
-
+import cheater
 import random
 human_choice = int(input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors\n"))
 computer_choice = random.randint(0, 2)
@@ -65,3 +65,4 @@ elif human_figure == computer_figure:
     print("DRAW!!")
 else:
     print(f"You typed: {human_choice} which is INVALID!\nCheating is not allowed, so you LOSE!")
+    print(cheater.face)
