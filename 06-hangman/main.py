@@ -1,8 +1,66 @@
 #Hangman Game! 
 import random
-word_list = ["aardvark", "baboon", "camel"]
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\\ |
+ / \\  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\\ |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\\ |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
 
-#TODO: Randomly choose a word from the word_list and assign it to a variable called chosen_word.
+word_list = ["aardvark", "baboon", "camel"]
+lives = 6
+#Randomly choose a word from the word_list and assign it to a variable called chosen_word.
 chosen_word = random.choice(word_list)
 print(f"the chosen word is : {chosen_word}" )
 
@@ -18,10 +76,16 @@ while not game_over:
   for position in range(len(chosen_word)):
     
     letter = chosen_word[position]
-    if guess == letter:
+    if letter == guess:
       display[position] = letter
-    
+
+
+  if guess not in chosen_word:
+      lives -= 1
+      if lives == 0:
+        game_over = True
+        print("You Lose!")
+  print(stages[lives])
   if "_" not in display:
     game_over = True
-  print("Yay! you WON!")
-  print(display)
+    print("Yay! you WON!")
