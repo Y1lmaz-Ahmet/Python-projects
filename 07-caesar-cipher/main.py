@@ -7,19 +7,12 @@ shift = int(input("Type the shift number:\n"))
 
 def caesar(text_input,shift_amount,direction):
   output_text = ""
-  for char in text_input:
-    position = alphabet.index(char)
-    if direction == "encode":
-      new_position = position + shift_amount
-      new_letter = alphabet[new_position]
-      output_text += new_letter
-    elif direction == "decode":
-      new_position = position - shift_amount
-      new_letter = alphabet[new_position]
-      output_text += new_letter
+  if direction == "decode":
+    shift_amount *= -1
+  for letter in text_input:
+    position = alphabet.index(letter)
+    new_position = position + shift_amount
+    output_text += alphabet[new_position]
   print(f"The {direction} text is {output_text}")
-
-
-    
-
+  
 caesar(text_input=text, shift_amount=shift,direction=direction)
