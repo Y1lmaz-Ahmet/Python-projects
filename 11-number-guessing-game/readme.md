@@ -1,5 +1,5 @@
 # Number Guessing Game
-
+![start-game-picture](game-start.png)
 ## Objectives
 - Implement a simple number guessing game in Python.
 - Include an ASCII art logo for a personalized touch.
@@ -21,4 +21,4 @@
 ## Usage
 1. Clone the repository:
    ```bash
-   git clone https://github.com/y1lmaz-ahmet/number-guessing-game.git
+   git clone https://github.com/Y1lmaz-Ahmet/Python-projects/tree/main/11-number-guessing-game
