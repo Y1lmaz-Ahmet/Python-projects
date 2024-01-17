@@ -10,25 +10,42 @@ from art import logo, vs
 ####### START #######
 ## Starting game print ASCII: Logo
 print(logo)
-## Compare A : function(name,job,residence)
+## Compare A : function(name,job,country)
+def pick_person_from_list(person_list): ## this can be used twice: Compare A & Compare B 
+	"""
+    Choose a random person from the provided list.
 
-## Print: ASCII vs
+    Parameters:
+    - person_list (list): A list of dictionaries representing individuals.
+
+    Returns:
+    - dict: A dictionary representing the chosen person.
+    """
+	chosen_person = random.choice(person_list)
+	return chosen_person
+
+def print_person_information(person):
+	"""
+    Print information about the chosen person.
+
+    Parameters:
+    - person (dict): A dictionary representing an individual with 'name', 'description', and 'country' attributes.
+    """
+	print(f"{person['name']}, {person['description']}, from {person['country']}.")
+
+print(logo)
+
+person_a = pick_person_from_list(data)
+print_person_information(person=person_a)
+
 print(vs)
 
-## Compare B : function(name,job,residence)
+person_b = pick_person_from_list(data)
+print_person_information(person=person_b)
 
-## input question: 'Who has more followers? Type 'a' or 'b'
-user_anser = str(input(f"Who has more followers? 'Type' 'a' or 'b': ")).lower()
+user_answer = str(input(f"Who has more followers? 'Type' 'a' or 'b': "))
 
-## ON CORRECT ANSWER
-## print ASCII: Logo
 
-## print: "You are right with user score"
-print(f"You are right! Current score : user_score")
-
-## Remove A: Insert B
-
-## ON WRONG ANSWER
 
 
 ####### END #######
