@@ -1,71 +1,60 @@
-####### START IMPORTS #######
-## Import Random 
-import random 
-## Import list as data from game_data
 from game_data import data
-## Import ASCII  as logo from art
+import random
 from art import logo, vs
-####### END IMPORTS #######
+import os
 
-####### START #######
+def get_random_account():
+  """Get data from random account"""
+  return random.choice(data)
 
+def format_data(account):
+  """Format account into printable format: name, description and country"""
+  name = account["name"]
+  description = account["description"]
+  country = account["country"]
+  # print(f'{name}: {account["follower_count"]}')
+  return f"{name}, a {description}, from {country}"
 
-## Compare A : function(name,job,country)
-def pick_person_from_list(person_list): ## this can be used twice: Compare A & Compare B 
-	"""
-    Choose a random person from the provided list.
-
-    Parameters:
-    - person_list (list): A list of dictionaries representing individuals.
-
-    Returns:
-    - dict: A dictionary representing the chosen person.
-    """
-	chosen_person = random.choice(person_list)
-	return chosen_person
-
-def print_person_information(person):
-	"""
-    Print information about the chosen person.
-
-    Parameters:
-    - person (dict): A dictionary representing an individual with 'name', 'description', and 'country' attributes.
-    """
-	print(f"{person['name']}, {person['description']}, from {person['country']}.")
-
-print(logo)
-
-person_a = pick_person_from_list(data)
-print_person_information(person=person_a)
-
-print(vs)
-
-person_b = pick_person_from_list(data)
-print_person_information(person=person_b)
-
-user_answer = str(input(f"Who has more followers? 'Type' 'a' or 'b': "))
+def check_answer(guess, a_followers, b_followers):
+  """Checks followers against user's guess 
+  and returns True if they got it right.
+  Or False if they got it wrong.""" 
+  if a_followers > b_followers:
+    return guess == "a"
+  else:
+    return guess == "b"
 
 
-def compare_chosen_persons(first_person, second_person,user_input):
-	"""
-    Compare the follower counts of two persons and check if the user's input is correct.
+def game():
+  print(logo)
+  score = 0
+  game_should_continue = True
+  account_a = get_random_account()
+  account_b = get_random_account()
 
-    Parameters:
-    - first_person (dict): A dictionary representing the first person.
-    - second_person (dict): A dictionary representing the second person.
-    - user_input (str): The user's input, either 'a' or 'b'.
+  while game_should_continue:
+    account_a = account_b
+    account_b = get_random_account()
 
-    Returns:
-    - bool: True if the user's input is correct, False otherwise.
-    """
-	if first_person["follower_count"] > second_person["follower_count"] and user_input == "a":
-		return True
-	elif second_person["follower_count"] > first_person["follower_count"] and user_input == "b":
-		return True
-	else:
-		return False
-correct_choice = compare_chosen_persons(person_a,person_b,user_answer)
+    while account_a == account_b:
+      account_b = get_random_account()
 
+    print(f"Compare A: {format_data(account_a)}.")
+    print(vs)
+    print(f"Against B: {format_data(account_b)}.")
+    
+    guess = input("Who has more followers? Type 'A' or 'B': ").lower()
+    a_follower_count = account_a["follower_count"]
+    b_follower_count = account_b["follower_count"]
+    is_correct = check_answer(guess, a_follower_count, b_follower_count)
 
-####### END #######
+    os.system("cls" if os.name == "nt" else "clear")
+    print(logo)
+    if is_correct:
+      score += 1
+      print(f"You're right! Current score: {score}.")
+    else:
+      game_should_continue = False
+      print(f"Sorry, that's wrong. Final score: {score}")
 
+game()
