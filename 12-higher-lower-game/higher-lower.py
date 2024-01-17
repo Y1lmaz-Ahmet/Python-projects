@@ -8,8 +8,8 @@ from art import logo, vs
 ####### END IMPORTS #######
 
 ####### START #######
-## Starting game print ASCII: Logo
-print(logo)
+
+
 ## Compare A : function(name,job,country)
 def pick_person_from_list(person_list): ## this can be used twice: Compare A & Compare B 
 	"""
@@ -46,6 +46,25 @@ print_person_information(person=person_b)
 user_answer = str(input(f"Who has more followers? 'Type' 'a' or 'b': "))
 
 
+def compare_chosen_persons(first_person, second_person,user_input):
+	"""
+    Compare the follower counts of two persons and check if the user's input is correct.
+
+    Parameters:
+    - first_person (dict): A dictionary representing the first person.
+    - second_person (dict): A dictionary representing the second person.
+    - user_input (str): The user's input, either 'a' or 'b'.
+
+    Returns:
+    - bool: True if the user's input is correct, False otherwise.
+    """
+	if first_person["follower_count"] > second_person["follower_count"] and user_input == "a":
+		return True
+	elif second_person["follower_count"] > first_person["follower_count"] and user_input == "b":
+		return True
+	else:
+		return False
+correct_choice = compare_chosen_persons(person_a,person_b,user_answer)
 
 
 ####### END #######
