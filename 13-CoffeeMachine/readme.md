@@ -1,4 +1,4 @@
-# Your Coffee Machine Program
+# Coffee Machine Program
 
 ## Description
 This is a simple Python program that simulates a coffee machine. Users can choose from various coffee options, insert coins to make a purchase, and receive their chosen drink.
